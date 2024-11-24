@@ -1,4 +1,4 @@
-import {awscdk, ReleasableCommits} from 'projen'
+import { awscdk, ReleasableCommits } from 'projen'
 import { NodePackageManager } from 'projen/lib/javascript'
 
 const project = new awscdk.AwsCdkConstructLibrary({
