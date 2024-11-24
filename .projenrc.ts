@@ -1,5 +1,5 @@
 import { awscdk, ReleasableCommits } from 'projen'
-import { NodePackageManager } from 'projen/lib/javascript'
+import { NodePackageManager, NpmAccess } from 'projen/lib/javascript'
 
 const project = new awscdk.AwsCdkConstructLibrary({
   author: 'd4ndel1on',
@@ -11,6 +11,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   projenrcTs: true,
   repositoryUrl: 'https://github.com/cdk-libs/lexie.git',
   eslint: true,
+  npmAccess: NpmAccess.PUBLIC,
   depsUpgradeOptions: {
     workflow: false,
   },
