@@ -1,4 +1,4 @@
-import { awscdk, ReleasableCommits } from 'projen'
+import { awscdk } from 'projen'
 import { NodePackageManager, NpmAccess } from 'projen/lib/javascript'
 
 const project = new awscdk.AwsCdkConstructLibrary({
@@ -18,7 +18,6 @@ const project = new awscdk.AwsCdkConstructLibrary({
   },
   packageManager: NodePackageManager.NPM,
   minNodeVersion: '20.16.0',
-  releasableCommits: ReleasableCommits.featuresAndFixes(),
   pullRequestTemplateContents: [
     '## Description:\n' +
     'Fill your description here\n' +
