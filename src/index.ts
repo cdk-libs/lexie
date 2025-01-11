@@ -1,5 +1,3 @@
-export class Hello {
-  public sayHello() {
-    return 'hello, world!'
-  }
-}
+import { LexieUserManagement } from './constructs/LexieUserManagement'
+
+export { LexieUserManagement }

@@ -159,7 +159,16 @@
       "description": "Packs the current release for local development",
       "steps": [
         {
-          "exec": "mkdir -p ~/.cdk-releases && npm run build && npm pack --pack-destination ~/.cdk-releases"
+          "exec": "rm -rf dist && mkdir -p ~/.releases && npm run build && npm pack --pack-destination ~/.releases"
+        }
+      ]
+    },
+    "pack:nt": {
+      "name": "pack:nt",
+      "description": "Packs the current release for local development without tests. Use with caution!",
+      "steps": [
+        {
+          "exec": "rm -rf dist && mkdir -p ~/.releases && npm run build:nt && npm pack --pack-destination ~/.releases"
         }
       ]
     },
@@ -273,6 +282,15 @@
       "steps": [
         {
           "builtin": "release/reset-version"
+        }
+      ]
+    },
+    "update": {
+      "name": "update",
+      "description": "Update versions including CDK version",
+      "steps": [
+        {
+          "exec": "./scripts/update.sh"
         }
       ]
     },

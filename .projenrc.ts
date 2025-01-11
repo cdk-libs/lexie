@@ -4,7 +4,7 @@ import { NodePackageManager, NpmAccess } from 'projen/lib/javascript'
 const project = new awscdk.AwsCdkConstructLibrary({
   author: 'd4ndel1on',
   authorAddress: 'stefan@fancynetwork.net',
-  cdkVersion: '2.170.0',
+  cdkVersion: '2.175.1',
   defaultReleaseBranch: 'main',
   jsiiVersion: '~5.5.4',
   name: '@cdk-libs/lexie',
@@ -51,8 +51,16 @@ const project = new awscdk.AwsCdkConstructLibrary({
   ],
 })
 project.addTask('pack', {
-  exec: 'mkdir -p ~/.cdk-releases && npm run build && npm pack --pack-destination ~/.cdk-releases',
+  exec: 'rm -rf dist && mkdir -p ~/.releases && npm run build && npm pack --pack-destination ~/.releases',
   description: 'Packs the current release for local development',
+})
+project.addTask('update', {
+  exec: './scripts/update.sh',
+  description: 'Update versions including CDK version',
+})
+project.addTask('pack:nt', {
+  exec: 'rm -rf dist && mkdir -p ~/.releases && npm run build:nt && npm pack --pack-destination ~/.releases',
+  description: 'Packs the current release for local development without tests. Use with caution!',
 })
 project.eslint?.addRules({
   'semi': ['error', 'never'],
