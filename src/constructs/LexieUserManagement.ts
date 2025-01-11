@@ -10,7 +10,7 @@ export type LexieUserManagementTableProps = Omit<TableProps, 'sortKey' | 'partit
 
 export type LexieUserManagementUserPoolProps = Omit<UserPoolProps, 'customAttributes' | 'standardAttributes' | 'userVerification'>
 
-export type LexieUserManagementAddCustomDomainProps = {
+export type LexieUserManagementCustomDomainProps = {
   /**
    * Cname of the domain
    *
@@ -32,6 +32,10 @@ export type LexieUserManagementProps = {
    * Props for the User pool
    */
   userPool?: LexieUserManagementUserPoolProps;
+  /**
+   * Custom domain configuration
+   */
+  customDomain?: LexieUserManagementCustomDomainProps;
 }
 
 export class LexieUserManagement extends Construct {
@@ -47,6 +51,7 @@ export class LexieUserManagement extends Construct {
     const {
       table,
       userPool,
+      customDomain,
     } = props || {}
 
     this.dynamoDbTable = new Table(this, `${id}Table`, {
@@ -99,10 +104,14 @@ export class LexieUserManagement extends Construct {
         emailStyle: VerificationEmailStyle.CODE,
       },
     })
+
+    if (customDomain) {
+      this.addCustomDomain(customDomain)
+    }
   }
 
   addCustomDomain = (
-    { domainName, cname }: LexieUserManagementAddCustomDomainProps,
+    { domainName, cname }: LexieUserManagementCustomDomainProps,
   ) => {
     const zone = HostedZone.fromLookup(this, 'CustomDomainZone', {
       domainName,
