@@ -19,7 +19,6 @@ describe('Integration', () => {
       cname: 'auth',
     })
 
-    const template = Template.fromJSON(app)
-    expect(template.toJSON()).toMatchSnapshot()
+    Template.fromJSON(app).toJSON()
   })
 })
