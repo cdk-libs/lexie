@@ -12,6 +12,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   repositoryUrl: 'https://github.com/cdk-libs/lexie.git',
   eslint: true,
   npmAccess: NpmAccess.PUBLIC,
+  releaseToNpm: true,
   depsUpgradeOptions: {
     workflow: false,
   },
